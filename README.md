@@ -4,7 +4,7 @@
 
 ## Setup
 ```
-You can build it yourself then add it on your environtment variable. 
+You can build it yourself then put it on your environtment variable. 
 ```
 Or
 ```
