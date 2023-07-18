@@ -1,4 +1,4 @@
-# C++ template by [muhhae](github.com/muhhae)
+# wxWidget C++ template by [muhhae](github.com/muhhae)
 
 Prerequisities 
 - 

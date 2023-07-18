@@ -7,8 +7,6 @@ void commandList(std::string templatePath);
 
 int main(int argc, char *argv[])
 {
-    std::cout << "\nMuhhae Template Generator\n" << std::endl;
-
     std::string exePath = argv[0];
     std::string templatePath = exePath.substr(0, exePath.find_last_of("\\/")) + "\\Template\\";
 
@@ -18,14 +16,14 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+    if (static_cast<std::string>(argv[1]) == "list") 
+    {
+        list(templatePath);
+        return 0;
+    }
+
     if (argc < 3) 
     {
-        if (static_cast<std::string>(argv[1]) == "list") 
-        {
-            list(templatePath);
-            return 0;
-        }
-        
         commandList(templatePath);
         return 0;
     }
@@ -33,33 +31,12 @@ int main(int argc, char *argv[])
     std::string folderName = argv[1];
     std::string templateType = argv[2];
 
-    std::ifstream templateList;
-    templateList.open(templatePath + "TemplateList.txt");
-
-    std::string temp;
-    bool templateExists = false;
-
-    while (std::getline(templateList, temp))
-    {
-        if (temp == templateType) 
-        {
-            templateExists = true;
-            templatePath += temp;
-            break;
-        }
-    }
-
-    if (!templateExists) 
-    {
-        std::cout << "Template not found" << std::endl;
-        std::cout << "\"muhhae list\" to see available templates" << std::endl;
-        return 0;
-    }
+    templatePath += "/" + templateType;
 
     if (!std::filesystem::exists(templatePath)) 
     {
-        std::cout << "Error : Template folder not found" << std::endl;
-        std::cout << "Please check "<< templatePath << std::endl;
+        std::cout << "Error : Template not found" << std::endl;
+        list(templatePath);
         std::cout << "\n";
         return 0;
     }
@@ -85,17 +62,14 @@ int main(int argc, char *argv[])
 
 void list(std::string templatePath)
 {
-    std::ifstream templateList;
-    templateList.open(templatePath + "TemplateList.txt");
-
-    std::string temp;
     std::cout << "Available templates : " << std::endl;
 
-    while(std::getline(templateList, temp))
+    for (const auto & entry : std::filesystem::directory_iterator(templatePath))
     {
-        std::cout << "\t" << temp << std::endl;
+        std::cout << "\t" << entry.path().filename().string() << std::endl;
     }
-    std::cout << "\nYou can add your own template by adding folder to "<< templatePath << " Then add it to TemplateList.txt\n" << std::endl;
+
+    std::cout << "\nYou can add your own template by adding folder to "<< templatePath << std::endl;
 }
 
 void commandList(std::string templatePath)
@@ -103,6 +77,5 @@ void commandList(std::string templatePath)
     std::cout << "List of commands : " << std::endl;
     std::cout << "\tmuhhae <folderName> <templateType> to create project" << std::endl; 
     std::cout << "\tmuhhae list to see available templates" << std::endl;
-
-    std::cout << "\nYou can add your own template by adding folder to "<< templatePath << " Then add it to TemplateList.txt\n" << std::endl;
+    std::cout << "You can add your own template by adding folder to "<< templatePath << std::endl;
 }
