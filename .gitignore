@@ -1,0 +1,7 @@
+**/.make
+**/Makefile
+
+muhhae.make
+**/obj
+**/Debug
+.vscode
