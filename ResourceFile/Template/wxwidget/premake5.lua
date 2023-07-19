@@ -18,8 +18,6 @@ project "muhhae"
     targetdir "%{BUILDDIR}/%{cfg.buildcfg}" --LDFLAGS
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
 
-    prebuildcommands
-
     files {
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
