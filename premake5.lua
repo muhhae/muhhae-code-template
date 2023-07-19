@@ -24,7 +24,7 @@ project "muhhae"
     }
 
     prebuildcommands { 
-        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/",
+        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/Template",
         "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}" 
     }
 

@@ -34,8 +34,8 @@ project "ImguiApp"
     }
 
     prebuildcommands { 
-        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/",
-        "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}" 
+        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/resource",
+        "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}/resource" 
     }
 
     filter "configurations:Debug"
