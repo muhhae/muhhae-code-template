@@ -7,7 +7,6 @@ workspace "CPPTemplate"
 SRCDIR = "src" --Source Code Directory
 BUILDDIR = "build" --Build Directory
 OBJDIR = "%{BUILDDIR}/obj" --Obj Directory
-RESFILE = "resource" --Resource Directory
 
 
 project "muhhae"
@@ -23,11 +22,6 @@ project "muhhae"
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
         "%{SRCDIR}/**.cpp"
-    }
-
-    prebuildcommands { 
-        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/",
-        "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}" 
     }
 
     filter "configurations:Debug"
