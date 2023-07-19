@@ -8,6 +8,7 @@ SRCDIR = "src" --Source Code Directory
 BUILDDIR = "bin" --Build Directory
 OBJDIR = "obj" --Obj Directory
 
+
 project "ImguiApp"
     language "C++" 
 
@@ -32,6 +33,9 @@ project "ImguiApp"
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
         "%{SRCDIR}/**.cpp"
+        
+        -- "include/**.cpp",
+        -- "include/**.h"
     }
 
     filter "configurations:Debug"

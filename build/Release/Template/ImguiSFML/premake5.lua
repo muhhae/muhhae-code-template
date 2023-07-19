@@ -5,15 +5,17 @@ workspace "ImguiApp"
     configurations { "Debug", "Release" }
 
 SRCDIR = "src" --Source Code Directory
-BUILDDIR = "build" --Build Directory
+BUILDDIR = "bin" --Build Directory
 OBJDIR = "obj" --Obj Directory
-RESFILE = "resource" --Resource Directory
-INCLUDEDIR = "include" --include directory for external library
-
 
 project "ImguiApp"
     language "C++" 
+
     cppdialect "C++latest"
+    
+    links {
+        "include/libImguiSFML/Libs/ImguiSFML",
+    }
 
     links {
         "opengl32","sfml-audio", "sfml-graphics", "sfml-network", "sfml-system", "sfml-window"
@@ -23,23 +25,13 @@ project "ImguiApp"
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
 
     includedirs {
-        "%{INCLUDEDIR}/**"
+        "include/libImguiSFML/header"
     }
 
     files {
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
-        "%{SRCDIR}/**.cpp",
-
-
-        "%{INCLUDEDIR}/**.cpp",
-        "%{INCLUDEDIR}/**.h",
-        "%{INCLUDEDIR}/**.hpp"
-    }
-
-    prebuildcommands { 
-        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/%{RESFILE}",
-        "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}/%{RESFILE}" 
+        "%{SRCDIR}/**.cpp"
     }
 
     filter "configurations:Debug"
