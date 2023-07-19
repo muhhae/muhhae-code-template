@@ -6,8 +6,9 @@ workspace "ImguiApp"
 
 SRCDIR = "src" --Source Code Directory
 BUILDDIR = "build" --Build Directory
-OBJDIR = "%{BUILDDIR}/obj" --Obj Directory
+OBJDIR = "obj" --Obj Directory
 RESFILE = "resource" --Resource Directory
+INCLUDEDIR = "include" --include directory for external library
 
 
 project "ImguiApp"
@@ -22,20 +23,23 @@ project "ImguiApp"
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
 
     includedirs {
-        "include/**"
+        "%{INCLUDEDIR}/**"
     }
 
     files {
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
         "%{SRCDIR}/**.cpp",
-        "include/**.cpp",
-        "include/**.h"
+
+
+        "%{INCLUDEDIR}/**.cpp",
+        "%{INCLUDEDIR}/**.h",
+        "%{INCLUDEDIR}/**.hpp"
     }
 
     prebuildcommands { 
-        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/",
-        "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}" 
+        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/%{RESFILE}",
+        "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}/%{RESFILE}" 
     }
 
     filter "configurations:Debug"

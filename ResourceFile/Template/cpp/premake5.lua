@@ -5,24 +5,29 @@ workspace "CPPTemplate"
     configurations { "Debug", "Release" }
 
 SRCDIR = "src" --Source Code Directory
-BUILDDIR = "build" --Build Directory
-OBJDIR = "%{BUILDDIR}/obj" --Obj Directory
+BUILDDIR = "bin" --Build Directory
+OBJDIR = "obj" --Obj Directory
 RESFILE = "resource" --Resource Directory
 
 
-project "muhhae"
+project "App"
     kind "ConsoleApp" --App Type
     language "C++" --Languange
 
-    buildoptions {"-std=c++23", "-Wall"} --CXXFLAGS
+    cppdialect "C++latest"
+    link {} --link library
 
-    targetdir "%{BUILDDIR}/%{cfg.buildcfg}" --LDFLAGS
+    targetdir "%{BUILDDIR}/%{cfg.buildcfg}" 
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
 
     files {
         "%{SRCDIR}/**.h",
         "%{SRCDIR}/**.hpp", 
-        "%{SRCDIR}/**.cpp"
+        "%{SRCDIR}/**.cpp",
+
+        "%include/**.cpp",
+        "%include/**.hpp",
+        "%include/**.h"
     }
 
     prebuildcommands { 
