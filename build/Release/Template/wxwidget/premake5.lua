@@ -30,4 +30,8 @@ project "muhhae"
 
     filter "configurations:Release"
         defines { "RELEASE" }
+        prebuildcommands { 
+            "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/resource",
+            "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}/resource" 
+        }
         optimize "On"

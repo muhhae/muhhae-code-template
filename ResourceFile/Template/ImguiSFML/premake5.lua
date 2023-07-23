@@ -15,7 +15,7 @@ project "ImguiApp"
     
     links {
         "include/libImguiSFML/Libs/ImguiSFML",
-    }
+    } 
 
     links {
         "opengl32","sfml-audio", "sfml-graphics", "sfml-network", "sfml-system", "sfml-window"
@@ -41,5 +41,9 @@ project "ImguiApp"
 
     filter "configurations:Release"
         kind "WindowedApp"
+        prebuildcommands { 
+            "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/resource",
+            "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}/resource" 
+        }
         defines { "RELEASE" }
         optimize "On"

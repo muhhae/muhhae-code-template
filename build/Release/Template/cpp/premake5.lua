@@ -15,7 +15,7 @@ project "App"
     language "C++" --Languange
 
     cppdialect "C++latest"
-    link {} --link library
+    links {} --link library
 
     targetdir "%{BUILDDIR}/%{cfg.buildcfg}" 
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
@@ -30,11 +30,6 @@ project "App"
         "%include/**.h"
     }
 
-    prebuildcommands { 
-        "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/resource",
-        "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}/resource" 
-    }
-
     filter "configurations:Debug"
         defines { "DEBUG" }
         symbols "On"
@@ -42,3 +37,7 @@ project "App"
     filter "configurations:Release"
         defines { "RELEASE" }
         optimize "On"
+        prebuildcommands { 
+            "rm -rf %{BUILDDIR}/%{cfg.buildcfg}/resource",
+            "{COPYDIR} %{RESFILE} %{BUILDDIR}/%{cfg.buildcfg}/resource" 
+        }
