@@ -1,6 +1,6 @@
 # Project Template Generator
 
-## Easy and quick Way to setup project with premake
+## Easy and quick Way to setup project 
 
 ## Setup
 ```
