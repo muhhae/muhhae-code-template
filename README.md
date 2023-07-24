@@ -5,7 +5,7 @@
 ## Setup
 
 >You can build it yourself then put it on your environtment variable. 
-Or
+<br>Or
 >Just Download zip in the release then extract to whatever folder you see fit and add it to your environtment variable
 
 
