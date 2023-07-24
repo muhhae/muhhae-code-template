@@ -8,7 +8,7 @@ SRCDIR = "src" --Source Code Directory
 BUILDDIR = "bin" --Build Directory
 OBJDIR = "obj" --Obj Directory
 
-project "ImguiApp"
+project "App"
     language "C++" 
 
     cppdialect "C++latest"
