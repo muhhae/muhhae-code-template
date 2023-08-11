@@ -5,7 +5,7 @@ include ("staticlib.lua") --for vcpkg to choose static library for linking
 
 workspace "App"
     configurations { "Debug", "Release" }
-    platform "x64" 
+    platform { "x64" }
 
 project "App"
     kind "ConsoleApp" --App Type
